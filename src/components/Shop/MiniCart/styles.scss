@@ -1,0 +1,25 @@
+.header__mini-cart {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+
+    &__quantity {
+
+    }
+
+    &__price {
+        color: #FFC09D;
+    }
+
+    &__icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: url('../../../assets/images/mini-cart__icon.svg') no-repeat center center;
+        background-size: contain;
+        cursor: pointer;
+        margin-left: 12px;
+    }
+}

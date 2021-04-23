@@ -1,0 +1,19 @@
+.menu {
+    display: flex;  
+    align-items: center;
+
+    li {
+        display: block;
+        cursor: pointer;
+        font-size: 18px;
+        a {
+            color: #5F5F5F;
+        }
+        &:not(:last-of-type) {
+            margin-right: 45px;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

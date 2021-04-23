@@ -1,0 +1,27 @@
+// stylelint-disable declaration-no-important
+
+.product-card {
+    font-weight: 500;
+    text-align: center;
+
+    &__photo {
+        border: 1px solid #C4C4C4;
+        height: 215px;
+        width: 100%;
+        background-size: contain !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        margin-bottom: 10px;
+    }
+
+    &__name {
+        font-size: 24px;
+        margin-bottom: 8px;
+        line-height: 29px;
+    }
+
+    &__price {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
