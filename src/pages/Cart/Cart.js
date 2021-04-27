@@ -1,9 +1,28 @@
 import ShopHeader from '../../components/Shop/ShopHeader';
 import './styles.scss';
-import item_photo1 from '../../assets/images/shoes.jpg';
-import item_photo2 from '../../assets/images/bags.png';
+
+import { useStoreon } from 'storeon/react';
+
+import CartItem from '../../components/Shop/CartItem';
+
+
 
 const Cart = () => {
+    const { dispatch, cart } = useStoreon('cart');
+    
+    const cartItems = cart.map( (item) => {
+        const {id, name, price, quantity, photo} = item;
+        return (
+            <CartItem 
+                key={id}
+                name={name}
+                price={price}
+                quantity={quantity}
+                photo={photo}
+            />
+        )
+    });
+    // console.log(cart);
     return (
         <div>
             <ShopHeader />
@@ -20,42 +39,7 @@ const Cart = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div className="item_name">
-                                    <div style={{background: `url(${item_photo1}) no-repeat center center`}}
-                                        className="item_photo"></div>                              
-                                    Item
-                                </div>
-                            </td>
-                            <td>
-                                <div className="item_price">100$</div>
-                            </td>
-                            <td>
-                                <div className="item_q"><input type="number" min="1" defaultValue="1" /></div>
-                            </td>
-                            <td>
-                                <div className="item_delete">X</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <div className="item_name">
-                                <div style={{background: `url(${item_photo2}) no-repeat center center`}}
-                                    className="item_photo"></div>                              
-                                Item
-                            </div>
-                            </td>
-                            <td>
-                                <div className="item_price">200$<span>100$ per item</span></div>
-                            </td>
-                            <td>
-                                <div className="item_q"><input type="number" min="1" defaultValue="2" /></div>
-                            </td>
-                            <td>
-                                <div className="item_delete">X</div>
-                            </td>
-                        </tr>
+                        {cartItems}
                     </tbody>
                 </table>
             

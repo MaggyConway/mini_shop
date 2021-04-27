@@ -7,6 +7,9 @@ const ProductCard = (props) => {
                  style={{background: `url(${props.photo})`}}></div>
             <div className="product-card__name">{props.name}</div>
             <div className="product-card__price">{props.price}</div>
+            <div className="product-card__wrap">
+                <button className="btn product-card__buy-btn">buy</button>
+            </div>
         </div>
     );
 };

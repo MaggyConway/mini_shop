@@ -1,12 +1,14 @@
 import ShopHeader from '../../components/Shop/ShopHeader';
 import ProductsList from '../../components/Shop/ProductsList';
-// import './styles.scss';
+
+import { useStoreon } from 'storeon/react';
 
 const Bags = () => {
+    const { dispatch, bags } = useStoreon('bags');
     return (
         <div className="shop-section">
             <ShopHeader />
-            <ProductsList type="Bags" />
+            <ProductsList type="Bags" items={bags} />
         </div>
     );
 };
