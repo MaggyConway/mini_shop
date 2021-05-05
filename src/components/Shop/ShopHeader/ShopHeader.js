@@ -4,14 +4,14 @@ import MiniCart from '../MiniCart';
 import ShopMenu from '../ShopMenu';
 import './styles.scss';
 
-const ShopHeader = () => {
+const ShopHeader = ({cartTotal, allQuantity}) => {
     return (
         <header className="wrapper">
             <div className="header--left">
                 <Link to='/'><img src={logopath} alt="shop_logo" /></Link>
                 <ShopMenu />
             </div>
-            <MiniCart />
+            <MiniCart cartTotal={cartTotal} allQuantity={allQuantity} />
         </header>
     );
 };

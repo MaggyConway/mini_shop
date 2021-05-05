@@ -1,15 +1,13 @@
 import { createStoreon } from 'storeon';
 
-import { bags } from './bags';
-import { shoes } from './shoes';
-import { hats } from './hats';
+import { products } from './products';
 import { cart } from './cart';
+import { total } from './total';
 
 const store = createStoreon([
-    bags,
-    shoes,
-    hats,
-    cart
+    products,
+    cart,
+    total
 ]);
 
 export default store;

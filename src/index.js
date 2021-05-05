@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-
-
-import './index.css';
+import { StoreContext } from 'storeon/react';
+import store from './store';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
+
+localStorage.setItem('sortby_price', null)
+localStorage.setItem('sortby_name', null)
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <StoreContext.Provider value={store}><App /></StoreContext.Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

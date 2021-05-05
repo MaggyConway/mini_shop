@@ -1,30 +1,42 @@
-import photoHat from '../assets/images/hats/hat1.jpg';
-import photoShoe from '../assets/images/shoes/shoe1.jpg';
-import photoBag from '../assets/images/bags/bag1.png';
-
 export function cart (store) {
     store.on('@init', () => ({ 
-      cart: [
-        {
-          id: 2,
-          name: 'hat2',
-          price: '$111',
-          quantity: 1,
-          photo: photoHat
-        },
-        {
-          id: 14,
-          name: 'shoe14',
-          price: '$29',
-          quantity: 2,
-          photo: photoShoe
-        }
-      ],
+      cart: [],
     }));
   
-    // store.on('cart/add', ({ cart }, cartitem) => {
-    //   return { cart: cart.concat([cartitem]) }
-    // });
+    store.on('cart/add', ({ cart }, product) => {
+      const addCartArr = [...cart];
+      let found = addCartArr.some(el => el.id  === product.id);
+      if (found) {
+        let double = product.id;
+        addCartArr.forEach(el => {
+          if (el.id === double) {
+            el.quantity += 1;
+          }
+        });
+
+        return { cart: addCartArr }
+
+      } else {
+        return { cart : [...cart, product] }
+      }
+    });
+
+    store.on('cart/delete', ({ cart }, productId) => {
+      let toDeleteArr = cart.filter(cartItem => cartItem.id !== productId);
+      return {
+        cart: toDeleteArr
+      }
+    });
+
+    store.on('cart/quantity', ({ cart }, product) => {
+      const arr = [...cart];
+      arr.forEach(el => {
+        if (el.id === product.id) {
+          el.quantity = product.quantity;
+        }
+      });
+      return { cart : [...arr] } 
+    });
 };
 
 export default cart;

@@ -8,12 +8,16 @@
         font-size: 18px;
         a {
             color: #5F5F5F;
+            text-decoration: none;
         }
         &:not(:last-of-type) {
             margin-right: 45px;
         }
         &:hover {
-            text-decoration: underline;
+            a {
+                // text-decoration: underline;
+                color: deepskyblue;
+            }
         }
     }
 }

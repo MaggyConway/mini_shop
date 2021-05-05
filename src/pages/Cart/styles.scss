@@ -1,7 +1,5 @@
 // stylelint-disable declaration-no-important
 
-$orange : #ffc09d;
-
 .cart {
     color: #000;
     font-weight: 500;
@@ -47,6 +45,9 @@ $orange : #ffc09d;
             align-items: center;
         }
         .item_price {
+            p {
+                display: inline;
+            }
             span {
                 display: block;
                 font-weight: 500;
@@ -70,10 +71,20 @@ $orange : #ffc09d;
             }
         }
         .item_delete {
-            color: #999999;
-            cursor: pointer;
-            text-align: right;
             padding-right: 75px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            span {
+                color: #999999;
+                user-select: none;
+                cursor: pointer;
+            }
+            &:hover {
+                span {
+                    color: rgb(255, 0, 85);
+                }
+            }
         }
     }
     &__total {
@@ -82,26 +93,9 @@ $orange : #ffc09d;
         margin-top: 20px;
     }
     &__checkout-btn {
-        text-align: center;
         position: absolute;
         right: 100px;
         bottom: 50px;
-        text-transform: uppercase;
-        color: $orange;
-        font-weight: 500;
         font-size: 24px;
-        width: 220px;
-        height: 50px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        border: 1px solid $orange;
-        cursor: pointer;
-        transition: all .2s ease-in-out;
-        &:hover {
-            color: #fff;
-            background-color: $orange;
-        }
     }
 }

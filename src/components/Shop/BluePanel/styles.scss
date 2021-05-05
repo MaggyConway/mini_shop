@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+.sort-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    background: linear-gradient(82.79deg, aqua 16.51%, #8026f5 136.25%);
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sorting {
+    display: flex;
+    span {
+        display: block;
+        margin-left: 30px;
+        cursor: pointer;
+        border-bottom: 1px dashed #000;
+        transition: all .1s ease-in-out;
+        user-select: none;
+        &.act {
+            font-weight: 600;
+        }
+    }
+}
+
+.filter {
+    .price {
+        input {
+            font-size: inherit;
+            font-family: inherit;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 0 15px;
+            border-radius: 15px;
+            height: 30px;
+            width: 120px;
+            -moz-appearance: textfield;
+
+            &::-webkit-input-placeholder {color:#fff; font-style: italic;}
+            &::-moz-placeholder          {color:#fff; font-style: italic;}/* Firefox 19+ */
+            &:-moz-placeholder           {color:#fff; font-style: italic;}/* Firefox 18- */
+            &:-ms-input-placeholder      {color:#fff; font-style: italic;}
+
+            &::-webkit-outer-spin-button,
+            &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &:first-of-type {
+                margin-right: 20px;
+            }
+        }
+    }
+}

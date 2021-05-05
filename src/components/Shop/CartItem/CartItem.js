@@ -1,7 +1,20 @@
-const CartItem = ({name, price, quantity, photo}) => {
-    console.log(photo);
+import { useStoreon } from 'storeon/react';
+
+const CartItem = ({id, name, price, quantity, photo}) => {
+
+    const { dispatch } = useStoreon('cart');
+
+    function changeQ(e) {
+        quantity = e.target.value;
+        dispatch('cart/quantity', 
+        {
+            'id' : id, 
+            'quantity' : quantity
+        });
+    }
+
     return (
-        <tr>
+        <tr className="cart-item">
             <td>
                 <div className="item_name">
                     <div style={{background: `url(../${photo}) no-repeat center center`}}
@@ -10,13 +23,20 @@ const CartItem = ({name, price, quantity, photo}) => {
                 </div>
             </td>
             <td>
-                <div className="item_price">{price}</div>
+                <div className="item_price">$<p>{price}</p></div>
             </td>
             <td>
-                <div className="item_q"><input type="number" min="1" defaultValue={quantity} /></div>
+                <div className="item_q">
+                    <input type="number" min="1"
+                        defaultValue={quantity} 
+                        onChange={ changeQ }
+                        />
+                </div>
             </td>
             <td>
-                <div className="item_delete">X</div>
+                <div className="item_delete">
+                    <span onClick={ () => { dispatch('cart/delete', id) } }>X</span>
+                </div>
             </td>
         </tr>
     );

@@ -1,31 +1,40 @@
-import ShopHeader from '../../components/Shop/ShopHeader';
 import './styles.scss';
-
+import CartItem from '../../components/Shop/CartItem';
 import { useStoreon } from 'storeon/react';
 
-import CartItem from '../../components/Shop/CartItem';
-
-
-
-const Cart = () => {
-    const { dispatch, cart } = useStoreon('cart');
+const Cart = ({cartTotal}) => {
+    const { cart, products } = useStoreon('cart', 'products');
     
-    const cartItems = cart.map( (item) => {
-        const {id, name, price, quantity, photo} = item;
+    const cartItems = cart.map( (cartItem) => {
+        let itemByIdProps = {};
+        products.find(obj => {
+            if (obj.id === cartItem.id) {
+                itemByIdProps = {
+                    id: obj.id,
+                    name: obj.name,
+                    quantity: cartItem.quantity,
+                    price: obj.price,
+                    photo: obj.photo
+                }
+                return itemByIdProps;
+            }
+            return false;
+        });
+
         return (
             <CartItem 
-                key={id}
-                name={name}
-                price={price}
-                quantity={quantity}
-                photo={photo}
+                key={itemByIdProps.id}
+                id={itemByIdProps.id}
+                name={itemByIdProps.name}
+                price={itemByIdProps.price}
+                quantity={itemByIdProps.quantity}
+                photo={itemByIdProps.photo}
             />
         )
     });
-    // console.log(cart);
+
     return (
         <div>
-            <ShopHeader />
             <div className="wrapper cart">
                 <h1>Cart</h1>
 
@@ -44,10 +53,10 @@ const Cart = () => {
                 </table>
             
                 <div className="cart__total">
-                    Total: 300$
+                    Total: ${cartTotal}
                 </div>
 
-                <button className="cart__checkout-btn">
+                <button className="btn cart__checkout-btn">
                     CHECKOUT
                 </button>
             </div>
