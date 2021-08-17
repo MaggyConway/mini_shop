@@ -234,6 +234,46 @@ export function products(store) {
 
     return { products: productsArr }
   })
+
+  //   store.on('products/filterMin', ({ products }, minVal) => {
+  //     let productsArr = [...products]
+  //     let filtered = productsArr.filter((product) => product.price >= minVal)
+  //     // console.log('minVal = ', minVal)
+  //     return { products: filtered }
+  //   })
+
+  //   store.on('products/filterMax', ({ products }, maxVal) => {
+  //     let productsArr = [...products]
+  //     let filtered = productsArr.filter((product) => product.price <= maxVal)
+  //     // console.log('maxVal = ', maxVal)
+  //     return { products: filtered }
+  //   })
+
+  store.on('products/filter', ({ products }, rangeObj) => {
+    console.log(rangeObj)
+    let productsArr = [...products]
+
+    if (rangeObj.min === 0) {
+      // console.log('min = 0')
+      let filtered = productsArr.filter(
+        (product) => product.price <= rangeObj.max
+      )
+      return { products: filtered }
+    } else if (rangeObj.max === 0) {
+      // console.log('max = 0')
+      let filtered = productsArr.filter(
+        (product) => rangeObj.min <= product.price
+      )
+      return { products: filtered }
+    } else {
+      let filtered = productsArr.filter(
+        (product) =>
+          rangeObj.min <= product.price && product.price <= rangeObj.max
+      )
+      // console.log(filtered)
+      return { products: filtered }
+    }
+  })
 }
 
 export default products
